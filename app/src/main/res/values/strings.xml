@@ -4,4 +4,9 @@
     <string name="rawdata_title_raw">VCard Data (raw):</string>
     <string name="rawdata_title_processed">Interpreted VCard Data:</string>
     <string name="app_error_intentdata">The app was unable to read the VCard data from the content you shared. Please try again.</string>
+    <string name="vcard_field_fullname">Full Name</string>
+    <string name="vcard_field_name">Name</string>
+    <string name="vcard_field_email">E-mail</string>
+    <string name="vcard_field_phone">Phone number</string>
+    <string name="vcard_field_organisation">Organisation</string>
 </resources>
