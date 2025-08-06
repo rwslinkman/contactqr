@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.dp
 import androidx.core.graphics.createBitmap
 import nl.rwslinkman.contactqr.ui.theme.ContactQRTheme
 
-
 @Composable
 fun QRCodePage(vcardData: Bitmap?) {
     val qrBitmap = remember { vcardData }

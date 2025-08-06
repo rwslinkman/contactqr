@@ -3,4 +3,5 @@
     <string name="app_explanation">This app can be used to create a QR code from a contact in the Contacts app.\nShare a VCard (*.vcf) file with this app to turn the contact info into a QR code.\nSomeone else can scan the QR code to import a contact from you, without typos in the contact info.</string>
     <string name="rawdata_title_raw">VCard Data (raw):</string>
     <string name="rawdata_title_processed">Interpreted VCard Data:</string>
+    <string name="app_error_intentdata">The app was unable to read the VCard data from the content you shared. Please try again.</string>
 </resources>

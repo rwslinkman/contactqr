@@ -38,6 +38,7 @@ fun VCardPagerScreen(
     val pagerState = rememberPagerState { 2 }
 
     Box(Modifier.fillMaxSize().padding(WindowInsets.systemBars.asPaddingValues())) {
+        // Viewpager
         HorizontalPager(
             state = pagerState,
             pageSpacing = 16.dp,
@@ -47,6 +48,7 @@ fun VCardPagerScreen(
                 1 -> RawDataPage(vcardData.value)
             }
         }
+        // Page indicator
         Row(
             Modifier
                 .wrapContentHeight()

@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.runtime.collectAsState
+import nl.rwslinkman.contactqr.ui.ErrorScreen
 import nl.rwslinkman.contactqr.ui.MainScreen
 import nl.rwslinkman.contactqr.ui.VCardPagerScreen
 import nl.rwslinkman.contactqr.ui.theme.ContactQRTheme
@@ -27,8 +28,7 @@ class MainActivity : ComponentActivity() {
                     intent?.action == Intent.ACTION_SEND -> {
                         val intentData = readVCardDataFromIntent(intent)
                         if (intentData == null) {
-                            // TODO: Create error screen
-                            MainScreen()
+                            ErrorScreen()
                         } else {
                             // Inject intent data in viewmodel and subscribe to it
                             viewModel.setup(intentData)
