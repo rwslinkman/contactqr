@@ -17,9 +17,15 @@ import androidx.compose.ui.unit.dp
 import nl.rwslinkman.contactqr.R
 import nl.rwslinkman.contactqr.SampleVCardData
 import nl.rwslinkman.contactqr.ui.theme.ContactQRTheme
+import nl.rwslinkman.contactqr.vcardparser.VCardField
 
 @Composable
-fun RawDataPage(vcardData: String?) {
+fun RawDataPage(
+    rawVCardData: String?,
+    parsedVCardData: List<VCardField>?)
+{
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -31,20 +37,21 @@ fun RawDataPage(vcardData: String?) {
             modifier = Modifier.wrapContentHeight().fillMaxWidth()
         )
         Text(
-            text = vcardData ?: "ERR: No data available",
+            text = rawVCardData ?: "ERR: No data available",
             fontFamily = FontFamily.Monospace,
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.wrapContentHeight().fillMaxWidth(),
         )
-        Text(
-            stringResource(R.string.rawdata_title_processed),
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.wrapContentHeight().fillMaxWidth().padding(top = 12.dp),
-        )
-        Text(
-            "TODO",
-            modifier = Modifier.wrapContentHeight().fillMaxWidth(),
-        )
+        parsedVCardData?.let {
+            Text(
+                stringResource(R.string.rawdata_title_processed),
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.wrapContentHeight().fillMaxWidth().padding(vertical = 6.dp),
+            )
+            parsedVCardData.forEach { field ->
+                VCardFieldRow(field)
+            }
+        }
     }
 }
 
@@ -52,6 +59,6 @@ fun RawDataPage(vcardData: String?) {
 @Composable
 fun RawDataPagePreview() {
     ContactQRTheme {
-        RawDataPage(SampleVCardData.sample0)
+        RawDataPage(SampleVCardData.sample0, listOf())
     }
 }

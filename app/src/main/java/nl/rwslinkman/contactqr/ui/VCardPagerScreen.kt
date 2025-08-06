@@ -29,11 +29,13 @@ import androidx.compose.ui.unit.dp
 import androidx.core.graphics.createBitmap
 import nl.rwslinkman.contactqr.SampleVCardData
 import nl.rwslinkman.contactqr.ui.theme.ContactQRTheme
+import nl.rwslinkman.contactqr.vcardparser.VCardField
 
 @Composable
 fun VCardPagerScreen(
     vcardData: State<String?>,
-    qrcodeImage: State<Bitmap?>
+    qrcodeImage: State<Bitmap?>,
+    parsedData: State<List<VCardField>?>
 ) {
     val pagerState = rememberPagerState { 2 }
 
@@ -45,7 +47,7 @@ fun VCardPagerScreen(
         ) { pageIdx ->
             when (pageIdx) {
                 0 -> QRCodePage(qrcodeImage.value)
-                1 -> RawDataPage(vcardData.value)
+                1 -> RawDataPage(vcardData.value, parsedData.value)
             }
         }
         // Page indicator
@@ -82,11 +84,13 @@ fun VCardPagerScreenPreview() {
             eraseColor(android.graphics.Color.GRAY)
         })
     }
+    val previewParsedData = remember { mutableStateOf<List<VCardField>>(listOf()) }
 
     ContactQRTheme {
         VCardPagerScreen(
             vcardData = previewData,
-            qrcodeImage = fakeBitmap
+            qrcodeImage = fakeBitmap,
+            parsedData = previewParsedData
         )
     }
 }

@@ -34,7 +34,8 @@ class MainActivity : ComponentActivity() {
                             viewModel.setup(intentData)
                             VCardPagerScreen(
                                 vcardData = viewModel.vcardData.collectAsState(),
-                                qrcodeImage = viewModel.qrCodeBitmap.collectAsState()
+                                qrcodeImage = viewModel.qrCodeBitmap.collectAsState(),
+                                parsedData = viewModel.parsedVCardFields.collectAsState()
                             )
                         }
                     }

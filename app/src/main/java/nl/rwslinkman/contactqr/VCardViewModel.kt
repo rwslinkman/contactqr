@@ -11,6 +11,8 @@ import com.google.zxing.qrcode.QRCodeWriter
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import nl.rwslinkman.contactqr.vcardparser.VCardField
+import nl.rwslinkman.contactqr.vcardparser.VCardParser
 
 class VCardViewModel : ViewModel() {
 
@@ -20,7 +22,16 @@ class VCardViewModel : ViewModel() {
     private val _qrCodeBitmap = MutableStateFlow<Bitmap?>(null)
     val qrCodeBitmap: StateFlow<Bitmap?> = _qrCodeBitmap
 
-    fun generateQrCode(data: String) = viewModelScope.launch {
+    private val _parsedVCardFields = MutableStateFlow<List<VCardField>?>(null)
+    val parsedVCardFields: StateFlow<List<VCardField>?> = _parsedVCardFields
+
+    fun setup(intentData: String) {
+        _vcardData.value = intentData
+        generateQrCode(intentData)
+        parseVCard(intentData)
+    }
+
+    private fun generateQrCode(data: String) = viewModelScope.launch {
         val qrImage = try {
             Log.i("QRCodePage", "generateQrCode")
             val size = 2048 // pixels
@@ -40,8 +51,8 @@ class VCardViewModel : ViewModel() {
         _qrCodeBitmap.value = qrImage
     }
 
-    fun setup(intentData: String) {
-        _vcardData.value = intentData
-        generateQrCode(intentData)
+    private fun parseVCard(data: String) {
+        val parseResult = VCardParser.parse(data)
+        _parsedVCardFields.value = parseResult
     }
 }
