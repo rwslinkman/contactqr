@@ -6,6 +6,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import androidx.compose.runtime.collectAsState
 import nl.rwslinkman.contactqr.ui.MainScreen
 import nl.rwslinkman.contactqr.ui.VCardPagerScreen
 import nl.rwslinkman.contactqr.ui.theme.ContactQRTheme
@@ -16,6 +18,8 @@ import java.io.InputStream
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val viewModel: VCardViewModel by viewModels()
+
         enableEdgeToEdge()
         setContent {
             ContactQRTheme {
@@ -26,7 +30,12 @@ class MainActivity : ComponentActivity() {
                             // TODO: Create error screen
                             MainScreen()
                         } else {
-                            VCardPagerScreen(vcardData = intentData)
+                            // Inject intent data in viewmodel and subscribe to it
+                            viewModel.setup(intentData)
+                            VCardPagerScreen(
+                                vcardData = viewModel.vcardData.collectAsState(),
+                                qrcodeImage = viewModel.qrCodeBitmap.collectAsState()
+                            )
                         }
                     }
                     else -> {

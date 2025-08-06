@@ -15,10 +15,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import nl.rwslinkman.contactqr.R
+import nl.rwslinkman.contactqr.SampleVCardData
 import nl.rwslinkman.contactqr.ui.theme.ContactQRTheme
 
 @Composable
-fun RawDataPage(vcardData: String) {
+fun RawDataPage(vcardData: String?) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -30,7 +31,7 @@ fun RawDataPage(vcardData: String) {
             modifier = Modifier.wrapContentHeight().fillMaxWidth()
         )
         Text(
-            text = vcardData,
+            text = vcardData ?: "ERR: No data available",
             fontFamily = FontFamily.Monospace,
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.wrapContentHeight().fillMaxWidth(),
@@ -51,16 +52,6 @@ fun RawDataPage(vcardData: String) {
 @Composable
 fun RawDataPagePreview() {
     ContactQRTheme {
-        val sampleData =
-            "BEGIN:VCARD\n" +
-            "VERSION:2.1\n" +
-            "N:LastName;FirstName;;;\n" +
-            "FN:FirstName LastName\n" +
-            "TEL;CELL:+31600000000\n" +
-            "EMAIL;HOME:personal@mail.com\n" +
-            "EMAIL;WORK:work@mail.com\n" +
-            "URL:https://mysite.com\n" +
-            "END:VCARD"
-        RawDataPage(sampleData)
+        RawDataPage(SampleVCardData.sample0)
     }
 }
