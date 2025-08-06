@@ -47,7 +47,7 @@ fun VCardFieldRow(field: VCardField) {
 }
 
 fun getLabelAndIconForType(field: VCardField, context: Context): Pair<String, ImageVector> {
-    // TODO: Use string identifiers
+    // TODO: Add subcategory to label
     return when (field.category.uppercase()) {
         "FN" -> context.resources.getString(R.string.vcard_field_fullname) to Icons.Default.Person
         "N" -> context.resources.getString(R.string.vcard_field_name) to Icons.Default.Person

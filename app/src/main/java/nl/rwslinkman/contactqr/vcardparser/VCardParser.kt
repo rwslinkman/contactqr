@@ -7,7 +7,10 @@ object VCardParser {
     const val FIELD_EMAIL = "EMAIL"
     const val FIELD_EMAIL_HOME = "HOME"
     const val FIELD_EMAIL_WORK = "WORK"
+    const val FIELD_EMAIL_INTERNET = "INTERNET"
     const val FIELD_PHONE_NUMBER = "TEL"
+    const val FIELD_PHONE_NUMBER_HOME = "HOME"
+    const val FIELD_PHONE_NUMBER_MOBILE = "CELL"
     const val FIELD_ORGANISATION = "ORG"
     const val FIELD_WEBSITE = "URL"
 
