@@ -13,6 +13,7 @@ object VCardParser {
     const val FIELD_PHONE_NUMBER_MOBILE = "CELL"
     const val FIELD_ORGANISATION = "ORG"
     const val FIELD_WEBSITE = "URL"
+    const val FIELD_BIRTHDAY = "BDAY"
 
     fun parse(data: String): List<VCardField> {
         val dataItems =  data
